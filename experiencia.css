@@ -225,7 +225,9 @@
 .timeline-nav {
   display: none;
   position: fixed;
-  right: 0; top: 50%;
+  left: auto !important;
+  right: 0 !important;
+  top: 50%;
   transform: translateY(-50%);
   z-index: 50;
   background: var(--white);
