@@ -29,17 +29,28 @@
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">Inicio</a>
-    <a href="experiencia.html">Experiencia</a>
+    <a href="experiencia.html" class="active">Experiencia</a>
     <a href="extracurricular.html">Extracurricular</a>
     <a href="logros.html">Logros</a>
   </div>
 
-  <!-- PAGE HERO -->
+  <!-- PAGE HERO CON GALERÍA DE IMÁGENES EN FONDO -->
   <header class="page-hero exp-hero">
     <div class="page-hero-bg">
+      <!-- BANDA DIAGONAL CONTINUA DE IMÁGENES
+           Ruta: img/hero/ 
+           Archivos: hero-1.jpg, hero-2.jpg, hero-3.jpg, etc.
+           El JS duplica automáticamente para scroll infinito
+      -->
+      <div class="photo-band-wrapper">
+        <div class="photo-band-track" id="photoBandTrack">
+          <!-- Los items se cargan automáticamente con JS -->
+        </div>
+      </div>
       <div class="hero-stripes"></div>
       <div class="hero-glow"></div>
     </div>
+
     <div class="page-hero-content">
       <a href="index.html" class="back-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
@@ -60,7 +71,7 @@
     </div>
   </header>
 
-  <!-- TIMELINE LATERAL (escritorio) -->
+  <!-- TIMELINE LATERAL DERECHA -->
   <aside class="timeline-nav" id="timelineNav">
     <div class="tn-label">Empresas</div>
     <nav class="tn-links">
@@ -95,395 +106,512 @@
   <main class="exp-main">
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 1: UTMA (3 sub-roles)
+         SECCIÓN 1: UTMA (3 sub-roles + Carrusel)
     ══════════════════════════════════════ -->
     <section class="exp-section" id="utma" data-theme="university">
 
-      <!-- Encabezado de empresa -->
-      <div class="company-header">
-        <div class="company-icon university-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">Agosto 2022 — A la fecha</span>
-          <h2 class="company-name">UTMA</h2>
-          <p class="company-full">Universidad Tecnológica Metropolitana de Aguascalientes</p>
-        </div>
-        <div class="company-badge university-badge">Educación Superior</div>
-      </div>
+      <!-- CONTENIDO IZQUIERDO -->
+      <div class="exp-section-content">
 
-      <!-- SUB-ROL: Promoción y Admisiones -->
-      <div class="role-block role-promo reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 20V10M12 20V4M6 20v-6"/>
+        <!-- Encabezado de empresa -->
+        <div class="company-header">
+          <div class="company-icon university-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag">Área de Promoción</span>
-            <h3 class="role-title">Coordinadora de Promoción y Admisiones</h3>
+          <div class="company-meta">
+            <span class="company-period">Agosto 2022 — A la fecha</span>
+            <h2 class="company-name">UTMA</h2>
+            <p class="company-full">Universidad Tecnológica Metropolitana de Aguascalientes</p>
           </div>
+          <div class="company-badge university-badge">Educación Superior</div>
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Promoción y difusión de la oferta educativa a bachilleratos, preparatorias y CBTIS.</li>
-            <li>Apoyo de orientación vocacional a estudiantes de nivel medio superior.</li>
-            <li>Ejecución de pláticas en bachilleratos y ferias educativas.</li>
-            <li>Coordinación de logística de visitas de bachilleratos a las instalaciones.</li>
-          </ul>
-          <div class="role-stat-row">
-            <div class="role-stat promo-stat">
-              <span class="stat-num">~800</span>
-              <span class="stat-label">Inscritos<br/>Enero–Agosto</span>
+
+        <!-- SUB-ROL: Promoción y Admisiones -->
+        <div class="role-block role-promo reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 20V10M12 20V4M6 20v-6"/>
+              </svg>
             </div>
-            <div class="role-stat-desc">
-              Meta alcanzada con estrategias de difusión directa en planteles educativos de la zona.
+            <div>
+              <span class="role-tag">Área de Promoción</span>
+              <h3 class="role-title">Coordinadora de Promoción y Admisiones</h3>
             </div>
           </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Promoción y difusión de la oferta educativa a bachilleratos, preparatorias y CBTIS.</li>
+              <li>Apoyo de orientación vocacional a estudiantes de nivel medio superior.</li>
+              <li>Ejecución de pláticas en bachilleratos y ferias educativas.</li>
+              <li>Coordinación de logística de visitas de bachilleratos a las instalaciones.</li>
+            </ul>
+            <div class="role-stat-row">
+              <div class="role-stat promo-stat">
+                <span class="stat-num">~800</span>
+                <span class="stat-label">Inscritos<br/>Enero–Agosto</span>
+              </div>
+              <div class="role-stat-desc">
+                Meta alcanzada con estrategias de difusión directa en planteles educativos de la zona.
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- SUB-ROL: Deportes -->
+        <div class="role-block role-sport reveal">
+          <div class="role-header">
+            <div class="role-icon sport-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                <path d="M2 12h20"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag sport-tag">Área Deportiva</span>
+              <h3 class="role-title">Coordinadora del Depto. de Deportes</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Coordinación de partidos y torneos inter-universitarios.</li>
+              <li>Manager de la disciplina de fútbol americano.</li>
+              <li>Organización de eventos para las 8 disciplinas deportivas.</li>
+              <li>Maratón con 600 corredores en categoría libre y juvenil.</li>
+              <li>Organización de un espectáculo de lucha libre en la UTMA.</li>
+              <li>Control de liberación de créditos deportivos y culturales.</li>
+              <li>Participación en Regionales y logística de desfiles.</li>
+            </ul>
+            <div class="sports-chips">
+              <span class="chip">🏈 Fútbol Americano</span>
+              <span class="chip">⚽ Fútbol</span>
+              <span class="chip">🏀 Basquetbol</span>
+              <span class="chip">🏐 Voleibol</span>
+              <span class="chip">🥋 Taekwondo</span>
+              <span class="chip">🎭 Baile Moderno</span>
+              <span class="chip">♟️ Ajedrez</span>
+              <span class="chip">🏈 Tocho</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUB-ROL: Tutorías -->
+        <div class="role-block role-tutoria reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag tut-tag">Apoyo Estudiantil</span>
+              <h3 class="role-title">Asistente del Depto. de Tutorías</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Apoyo con asesoría psicológica a estudiantes en situación de riesgo.</li>
+              <li>Seguimiento a maestros y tutores de las carreras.</li>
+              <li>Prevención de deserción escolar.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
 
-      <!-- SUB-ROL: Deportes -->
-      <div class="role-block role-sport reveal">
-        <div class="role-header">
-          <div class="role-icon sport-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"/>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-              <path d="M2 12h20"/>
-            </svg>
-          </div>
-          <div>
-            <span class="role-tag sport-tag">Área Deportiva</span>
-            <h3 class="role-title">Coordinadora del Depto. de Deportes</h3>
-          </div>
+      <!-- CARRUSEL DERECHO — Carpeta: img/utma/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Coordinación de partidos y torneos inter-universitarios.</li>
-            <li>Manager de la disciplina de fútbol americano.</li>
-            <li>Organización de eventos para las 8 disciplinas deportivas.</li>
-            <li>Maratón con 600 corredores en categoría libre y juvenil.</li>
-            <li>Organización de un espectáculo de lucha libre en la UTMA.</li>
-            <li>Control de liberación de créditos deportivos y culturales.</li>
-            <li>Participación en Regionales y logística de desfiles.</li>
-          </ul>
-          <div class="sports-chips">
-            <span class="chip">🏈 Fútbol Americano</span>
-            <span class="chip">⚽ Fútbol</span>
-            <span class="chip">🏀 Basquetbol</span>
-            <span class="chip">🏐 Voleibol</span>
-            <span class="chip">🥋 Taekwondo</span>
-            <span class="chip">🎭 Baile Moderno</span>
-            <span class="chip">♟️ Ajedrez</span>
-            <span class="chip">🏈 Tocho</span>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-utma">
+            <div class="carousel-slide"><img src="img/utma/foto-1.jpg" alt="UTMA 1" /><span class="slide-caption">Feria educativa</span></div>
+            <div class="carousel-slide"><img src="img/utma/foto-2.jpg" alt="UTMA 2" /><span class="slide-caption">Evento deportivo</span></div>
+            <div class="carousel-slide"><img src="img/utma/foto-3.jpg" alt="UTMA 3" /><span class="slide-caption">Maratón UTMA</span></div>
+            <div class="carousel-slide"><img src="img/utma/foto-4.jpg" alt="UTMA 4" /><span class="slide-caption">Visita bachillerato</span></div>
+            <div class="carousel-slide"><img src="img/utma/foto-5.jpg" alt="UTMA 5" /><span class="slide-caption">Torneo universitario</span></div>
           </div>
-        </div>
-      </div>
-
-      <!-- SUB-ROL: Tutorías -->
-      <div class="role-block role-tutoria reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
-          <div>
-            <span class="role-tag tut-tag">Apoyo Estudiantil</span>
-            <h3 class="role-title">Asistente del Depto. de Tutorías</h3>
-          </div>
-        </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Apoyo con asesoría psicológica a estudiantes en situación de riesgo.</li>
-            <li>Seguimiento a maestros y tutores de las carreras.</li>
-            <li>Prevención de deserción escolar.</li>
-          </ul>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-utma-dots"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 2: PEDAGOGÍA PARTICULAR
+         SECCIÓN 2: PEDAGOGÍA PARTICULAR + Carrusel
     ══════════════════════════════════════ -->
     <section class="exp-section" id="pedagogia" data-theme="pedagogy">
 
-      <div class="company-header">
-        <div class="company-icon pedagogy-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">2018 — 2021</span>
-          <h2 class="company-name">Atención Pedagógica</h2>
-          <p class="company-full">Particular · Chihuahua y Aguascalientes</p>
-        </div>
-        <div class="company-badge pedagogy-badge">Educación Especial</div>
-      </div>
+      <div class="exp-section-content">
 
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        <div class="company-header">
+          <div class="company-icon pedagogy-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag pedagogy-tag">Atención personalizada</span>
-            <h3 class="role-title">Tutora y Especialista en Aprendizaje</h3>
+          <div class="company-meta">
+            <span class="company-period">2018 — 2021</span>
+            <h2 class="company-name">Pedagogía Particular</h2>
+            <p class="company-full">Atención personalizada · Chihuahua y Aguascalientes</p>
+          </div>
+          <div class="company-badge pedagogy-badge">Educación Especial</div>
+        </div>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag pedagogy-tag">Atención personalizada</span>
+              <h3 class="role-title">Tutora y Especialista en Aprendizaje</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <p class="role-intro">Atención personalizada a nivel preescolar, primaria y secundaria para estudiantes con necesidades de apoyo específicas.</p>
+            <div class="ped-grid">
+              <div class="ped-card"><span class="ped-icon">📖</span><span>Introducción a leer y escribir</span></div>
+              <div class="ped-card"><span class="ped-icon">📉</span><span>Bajo rendimiento escolar</span></div>
+              <div class="ped-card"><span class="ped-icon">✍️</span><span>Lectura y redacción</span></div>
+              <div class="ped-card"><span class="ped-icon">🗣️</span><span>Problemas de lenguaje</span></div>
+              <div class="ped-card"><span class="ped-icon">🔄</span><span>Dislexia</span></div>
+              <div class="ped-card"><span class="ped-icon">⚡</span><span>Trastorno de atención</span></div>
+            </div>
           </div>
         </div>
-        <div class="role-body">
-          <p class="role-intro">Atención personalizada a nivel preescolar, primaria y secundaria para estudiantes con necesidades de apoyo específicas.</p>
-          <div class="ped-grid">
-            <div class="ped-card">
-              <span class="ped-icon">📖</span>
-              <span>Introducción a leer y escribir con comprensión lectora</span>
-            </div>
-            <div class="ped-card">
-              <span class="ped-icon">📉</span>
-              <span>Bajo rendimiento escolar</span>
-            </div>
-            <div class="ped-card">
-              <span class="ped-icon">✍️</span>
-              <span>Lectura, redacción y ortografía</span>
-            </div>
-            <div class="ped-card">
-              <span class="ped-icon">🗣️</span>
-              <span>Problemas de lenguaje</span>
-            </div>
-            <div class="ped-card">
-              <span class="ped-icon">🔄</span>
-              <span>Dislexia</span>
-            </div>
-            <div class="ped-card">
-              <span class="ped-icon">⚡</span>
-              <span>Trastorno de déficit de atención (TDA/H)</span>
-            </div>
+
+      </div>
+
+      <!-- CARRUSEL DERECHO — Carpeta: img/pedagogia/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
+        </div>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-pedagogia">
+            <div class="carousel-slide"><img src="img/pedagogia/foto-1.jpg" alt="Pedagogía 1" /><span class="slide-caption">Sesión de tutoría</span></div>
+            <div class="carousel-slide"><img src="img/pedagogia/foto-2.jpg" alt="Pedagogía 2" /><span class="slide-caption">Material educativo</span></div>
+            <div class="carousel-slide"><img src="img/pedagogia/foto-3.jpg" alt="Pedagogía 3" /><span class="slide-caption">Actividad lúdica</span></div>
+            <div class="carousel-slide"><img src="img/pedagogia/foto-4.jpg" alt="Pedagogía 4" /><span class="slide-caption">Evaluación</span></div>
           </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-pedagogia-dots"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 3: FORD / CONAUTO
+         SECCIÓN 3: FORD CONAUTO + Carrusel
     ══════════════════════════════════════ -->
     <section class="exp-section" id="ford" data-theme="auto">
 
-      <div class="company-header">
-        <div class="company-icon auto-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <rect x="1" y="3" width="15" height="13" rx="2"/>
-            <path d="M16 8h4l3 3v5h-7V8z"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/>
-            <circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">2012 — 2014</span>
-          <h2 class="company-name">Agencia Central Potosina</h2>
-          <p class="company-full">Ford San Luis Potosí · Autofinanciamiento CONAUTO</p>
-        </div>
-        <div class="company-badge auto-badge">Ventas Automotriz</div>
-      </div>
+      <div class="exp-section-content">
 
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        <div class="company-header">
+          <div class="company-icon auto-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="1" y="3" width="15" height="13" rx="2"/>
+              <path d="M16 8h4l3 3v5h-7V8z"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag auto-tag">Ventas y Prospección</span>
-            <h3 class="role-title">Ejecutiva de Ventas Automotriz</h3>
+          <div class="company-meta">
+            <span class="company-period">2012 — 2014</span>
+            <h2 class="company-name">Ford CONAUTO</h2>
+            <p class="company-full">Agencia Central Potosina · San Luis Potosí</p>
+          </div>
+          <div class="company-badge auto-badge">Ventas Automotriz</div>
+        </div>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag auto-tag">Ventas y Prospección</span>
+              <h3 class="role-title">Ejecutiva de Ventas Automotriz</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Prospección y atención de puntos de venta en distintas zonas de la ciudad.</li>
+              <li>Guardias en agencia y atención directa al cliente.</li>
+              <li>Promoción y difusión de la marca Ford.</li>
+              <li>Venta de autos bajo el esquema de autofinanciamiento CONAUTO.</li>
+            </ul>
+            <div class="auto-stat-row">
+              <div class="auto-kpi">
+                <span class="kpi-num">8</span>
+                <span class="kpi-label">Autos vendidos<br/>al mes</span>
+              </div>
+              <div class="kpi-bar-wrap">
+                <div class="kpi-bar">
+                  <div class="kpi-fill" style="--fill: 80%"></div>
+                </div>
+                <small>Meta de ventas mensuales alcanzada consistentemente</small>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Prospección y atención de puntos de venta en distintas zonas de la ciudad.</li>
-            <li>Guardias en agencia y atención directa al cliente.</li>
-            <li>Promoción y difusión de la marca Ford.</li>
-            <li>Venta de autos bajo el esquema de autofinanciamiento CONAUTO.</li>
-          </ul>
-          <div class="auto-stat-row">
-            <div class="auto-kpi">
-              <span class="kpi-num">8</span>
-              <span class="kpi-label">Autos vendidos<br/>al mes</span>
-            </div>
-            <div class="kpi-bar-wrap">
-              <div class="kpi-bar">
-                <div class="kpi-fill" style="--fill: 80%"></div>
-              </div>
-              <small>Meta de ventas mensuales alcanzada consistentemente</small>
-            </div>
+
+      </div>
+
+      <!-- CARRUSEL DERECHO — Carpeta: img/ford/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
+        </div>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-ford">
+            <div class="carousel-slide"><img src="img/ford/foto-1.jpg" alt="Ford 1" /><span class="slide-caption">Showroom Ford</span></div>
+            <div class="carousel-slide"><img src="img/ford/foto-2.jpg" alt="Ford 2" /><span class="slide-caption">Presentación vehículos</span></div>
+            <div class="carousel-slide"><img src="img/ford/foto-3.jpg" alt="Ford 3" /><span class="slide-caption">Evento de ventas</span></div>
+            <div class="carousel-slide"><img src="img/ford/foto-4.jpg" alt="Ford 4" /><span class="slide-caption">Capacitación CONAUTO</span></div>
           </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-ford-dots"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 4: UTNA
+         SECCIÓN 4: UTNA + Carrusel
     ══════════════════════════════════════ -->
     <section class="exp-section" id="utna" data-theme="university">
 
-      <div class="company-header">
-        <div class="company-icon university-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">2006 — 2009</span>
-          <h2 class="company-name">UTNA</h2>
-          <p class="company-full">Universidad Tecnológica del Norte de Aguascalientes</p>
-        </div>
-        <div class="company-badge university-badge">Educación Superior</div>
-      </div>
+      <div class="exp-section-content">
 
-      <!-- Sub-rol: Extensión Universitaria -->
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+        <div class="company-header">
+          <div class="company-icon university-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag">Vinculación Universitaria</span>
-            <h3 class="role-title">Coordinadora de Extensión Universitaria</h3>
+          <div class="company-meta">
+            <span class="company-period">2006 — 2009</span>
+            <h2 class="company-name">UTNA</h2>
+            <p class="company-full">Universidad Tecnológica del Norte de Aguascalientes</p>
+          </div>
+          <div class="company-badge university-badge">Educación Superior</div>
+        </div>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag">Vinculación Universitaria</span>
+              <h3 class="role-title">Coordinadora de Extensión Universitaria</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Elaboración del catálogo de cursos de Extensión Universitaria y sus contenidos.</li>
+              <li>Gestión de programas de Educación Continua.</li>
+              <li>Apoyo al departamento de Comunicación Social.</li>
+            </ul>
           </div>
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Elaboración del catálogo de cursos de Extensión Universitaria y sus contenidos.</li>
-            <li>Gestión de programas de Educación Continua.</li>
-            <li>Apoyo al departamento de Comunicación Social.</li>
-          </ul>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag">Docencia</span>
+              <h3 class="role-title">Catedrática — Expresión Oral y Escrita</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <p class="role-intro">Impartición de la asignatura de Expresión Oral y Escrita a nivel universitario, fortaleciendo habilidades comunicativas en estudiantes de distintas carreras.</p>
+          </div>
         </div>
+
       </div>
 
-      <!-- Sub-rol: Catedrática -->
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <div>
-            <span class="role-tag">Docencia</span>
-            <h3 class="role-title">Catedrática — Expresión Oral y Escrita</h3>
-          </div>
+      <!-- CARRUSEL DERECHO — Carpeta: img/utna/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
         </div>
-        <div class="role-body">
-          <p class="role-intro">Impartición de la asignatura de Expresión Oral y Escrita a nivel universitario, fortaleciendo habilidades comunicativas en estudiantes de distintas carreras.</p>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-utna">
+            <div class="carousel-slide"><img src="img/utna/foto-1.jpg" alt="UTNA 1" /><span class="slide-caption">Aula magistral</span></div>
+            <div class="carousel-slide"><img src="img/utna/foto-2.jpg" alt="UTNA 2" /><span class="slide-caption">Extensión universitaria</span></div>
+            <div class="carousel-slide"><img src="img/utna/foto-3.jpg" alt="UTNA 3" /><span class="slide-caption">Comunicación social</span></div>
+          </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-utna-dots"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 5: IMAAC
+         SECCIÓN 5: IMAAC + Carrusel
     ══════════════════════════════════════ -->
     <section class="exp-section" id="imaac" data-theme="media">
 
-      <div class="company-header">
-        <div class="company-icon media-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <polygon points="23 7 16 12 23 17 23 7"/>
-            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">2005</span>
-          <h2 class="company-name">IMAAC</h2>
-          <p class="company-full">Empresa de Publicidad y Mercadotecnia · Aguascalientes</p>
-        </div>
-        <div class="company-badge media-badge">Publicidad</div>
-      </div>
+      <div class="exp-section-content">
 
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        <div class="company-header">
+          <div class="company-icon media-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag media-tag">Publicidad & Marketing</span>
-            <h3 class="role-title">Ejecutiva de Publicidad y Mercadotecnia</h3>
+          <div class="company-meta">
+            <span class="company-period">2005</span>
+            <h2 class="company-name">IMAAC</h2>
+            <p class="company-full">Empresa de Publicidad y Mercadotecnia · Aguascalientes</p>
+          </div>
+          <div class="company-badge media-badge">Publicidad</div>
+        </div>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag media-tag">Publicidad & Marketing</span>
+              <h3 class="role-title">Ejecutiva de Publicidad y Mercadotecnia</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Elaboración de campañas de publicidad para clientes como VIVENDUM e INFONAVIT.</li>
+              <li>Asistente de producción en programas televisivos para campañas publicitarias.</li>
+              <li>Realización de estudios de mercado.</li>
+              <li>Gestión de relaciones públicas con clientes y medios.</li>
+            </ul>
           </div>
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Elaboración de campañas de publicidad para clientes como VIVENDUM e INFONAVIT.</li>
-            <li>Asistente de producción en programas televisivos para campañas publicitarias.</li>
-            <li>Realización de estudios de mercado.</li>
-            <li>Gestión de relaciones públicas con clientes y medios.</li>
-          </ul>
+
+      </div>
+
+      <!-- CARRUSEL DERECHO — Carpeta: img/imaac/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
+        </div>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-imaac">
+            <div class="carousel-slide"><img src="img/imaac/foto-1.jpg" alt="IMAAC 1" /><span class="slide-caption">Campaña publicitaria</span></div>
+            <div class="carousel-slide"><img src="img/imaac/foto-2.jpg" alt="IMAAC 2" /><span class="slide-caption">Producción TV</span></div>
+            <div class="carousel-slide"><img src="img/imaac/foto-3.jpg" alt="IMAAC 3" /><span class="slide-caption">Equipo creativo</span></div>
+          </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-imaac-dots"></div>
         </div>
       </div>
 
     </section>
 
     <!-- ══════════════════════════════════════
-         SECCIÓN 6: TELEVISA
+         SECCIÓN 6: TELEVISA + Carrusel
     ══════════════════════════════════════ -->
     <section class="exp-section" id="televisa" data-theme="media">
 
-      <div class="company-header">
-        <div class="company-icon media-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="2"/>
-            <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
-          </svg>
-        </div>
-        <div class="company-meta">
-          <span class="company-period">2004</span>
-          <h2 class="company-name">Televisa Aguascalientes</h2>
-          <p class="company-full">Reportera de Guardia — Noticiero Local</p>
-        </div>
-        <div class="company-badge media-badge">Periodismo</div>
-      </div>
+      <div class="exp-section-content">
 
-      <div class="role-block reveal">
-        <div class="role-header">
-          <div class="role-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-              <line x1="16" y1="13" x2="8" y2="13"/>
-              <line x1="16" y1="17" x2="8" y2="17"/>
-              <polyline points="10 9 9 9 8 9"/>
+        <div class="company-header">
+          <div class="company-icon media-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="2"/>
+              <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/>
             </svg>
           </div>
-          <div>
-            <span class="role-tag media-tag">Periodismo</span>
-            <h3 class="role-title">Reportera de Guardia</h3>
+          <div class="company-meta">
+            <span class="company-period">2004</span>
+            <h2 class="company-name">Televisa</h2>
+            <p class="company-full">Reportera de Guardia — Noticiero Local</p>
+          </div>
+          <div class="company-badge media-badge">Periodismo</div>
+        </div>
+
+        <div class="role-block reveal">
+          <div class="role-header">
+            <div class="role-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </div>
+            <div>
+              <span class="role-tag media-tag">Periodismo</span>
+              <h3 class="role-title">Reportera de Guardia</h3>
+            </div>
+          </div>
+          <div class="role-body">
+            <ul class="role-list">
+              <li>Elaboración y redacción de notas periodísticas para el noticiero local del estado.</li>
+              <li>Edición de contenidos para transmisión en vivo.</li>
+              <li>Cobertura de eventos de interés público en Aguascalientes.</li>
+            </ul>
           </div>
         </div>
-        <div class="role-body">
-          <ul class="role-list">
-            <li>Elaboración y redacción de notas periodísticas para el noticiero local del estado.</li>
-            <li>Edición de contenidos para transmisión en vivo.</li>
-            <li>Cobertura de eventos de interés público en Aguascalientes.</li>
-          </ul>
+
+      </div>
+
+      <!-- CARRUSEL DERECHO — Carpeta: img/televisa/ -->
+      <div class="section-carousel reveal">
+        <div class="carousel-label">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Evidencias fotográficas
+        </div>
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-televisa">
+            <div class="carousel-slide"><img src="img/televisa/foto-1.jpg" alt="Televisa 1" /><span class="slide-caption">Estudio televisivo</span></div>
+            <div class="carousel-slide"><img src="img/televisa/foto-2.jpg" alt="Televisa 2" /><span class="slide-caption">Cobertura de eventos</span></div>
+            <div class="carousel-slide"><img src="img/televisa/foto-3.jpg" alt="Televisa 3" /><span class="slide-caption">Redacción de noticias</span></div>
+          </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(this, -1)">❮</button>
+          <button class="carousel-arrow next" onclick="moveCarousel(this, 1)">❯</button>
+          <div class="carousel-controls" id="carousel-televisa-dots"></div>
         </div>
       </div>
 
