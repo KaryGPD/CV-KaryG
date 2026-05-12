@@ -1,6 +1,6 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.css v3
-   Con carruseles de fotos y galería de fondo
+   EXPERIENCIA LABORAL — experiencia.css v4
+   Con toggle colapsable para el navegador lateral
    ========================================= */
 
 /* --- TEMAS DE COLOR POR ÁREA --- */
@@ -28,10 +28,6 @@
 }
 
 .exp-page { background: #F0F2F5; }
-
-@media (min-width: 1100px) {
-  .exp-main { margin-right: 220px; }
-}
 
 .topbar .active {
   color: var(--gold) !important;
@@ -225,10 +221,49 @@
 }
 
 /* =========================================
-   TIMELINE NAV LATERAL DERECHA
+   TIMELINE NAV — COLAPSABLE
    ========================================= */
-.timeline-nav {
+.timeline-toggle {
   display: none;
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 51;
+  width: 40px;
+  height: 60px;
+  background: var(--white);
+  border: 1px solid #e0e6ef;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: -2px 4px 12px rgba(0,0,0,0.08);
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+}
+
+.timeline-toggle:hover {
+  background: #f9fafb;
+  box-shadow: -4px 8px 16px rgba(0,0,0,0.12);
+  color: var(--text);
+}
+
+.timeline-toggle.open {
+  color: var(--text);
+  transform: translateY(-50%) rotateZ(180deg);
+}
+
+@media (min-width: 1100px) {
+  .timeline-toggle { display: flex !important; }
+}
+
+.timeline-nav {
   position: fixed;
   left: auto !important;
   right: 0 !important;
@@ -240,11 +275,32 @@
   border-right: none;
   padding: 24px 0;
   width: 200px;
+  max-height: 70vh;
+  overflow-y: auto;
   box-shadow: -4px 0 20px rgba(0,0,0,0.06);
+  transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+  margin-right: 40px;
+  display: none;
+}
+
+.timeline-nav:not(.collapsed) {
+  display: block !important;
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.timeline-nav.collapsed {
+  transform: translateY(-50%) translateX(220px);
+  opacity: 0;
+  pointer-events: none;
+  display: none !important;
 }
 
 @media (min-width: 1100px) {
-  .timeline-nav { display: block; }
+  .timeline-nav {
+    display: block !important;
+  }
 }
 
 .tn-label {
@@ -678,7 +734,6 @@
   gap: 12px;
 }
 
-/* Promoción estadística */
 .role-stat-row {
   display: flex;
   align-items: center;
@@ -712,7 +767,6 @@
   line-height: 1.6;
 }
 
-/* Deportes */
 .role-sport { border-left: 4px solid var(--sport-accent); }
 
 .sports-chips {
@@ -736,7 +790,6 @@
 }
 .chip:hover { transform: scale(1.05); }
 
-/* Pedagogía */
 .ped-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -761,7 +814,6 @@
 .ped-card:hover { transform: translateY(-3px); }
 .ped-icon { font-size: 1.4rem; }
 
-/* Automotriz */
 .auto-stat-row {
   display: flex;
   align-items: center;
@@ -811,9 +863,6 @@
 }
 .kpi-bar-wrap small { font-size: 0.78rem; color: #667; }
 
-/* =========================================
-   REVEAL ANIMATION
-   ========================================= */
 .reveal {
   opacity: 0;
   transform: translateY(24px);
@@ -824,9 +873,6 @@
   transform: translateY(0);
 }
 
-/* =========================================
-   CTA FINAL
-   ========================================= */
 .page-cta {
   background: var(--navy);
   padding: 48px 24px;
@@ -881,9 +927,6 @@
 }
 .btn-log:hover { background: rgba(242,167,27,0.28); transform: translateY(-2px); }
 
-/* =========================================
-   RESPONSIVE
-   ========================================= */
 @media (max-width: 1250px) {
   .page-hero { padding: 90px 24px 56px; }
   .exp-section { grid-template-columns: 1fr; }
