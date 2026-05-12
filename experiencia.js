@@ -1,18 +1,119 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js
+   EXPERIENCIA LABORAL — experiencia.js v2
+   Con funcionalidad de carruseles y galerías
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ------------------------------------------
-     1. REVEAL ON SCROLL
+     1. CARGAR IMÁGENES EN LA GALERÍA DEL HERO
+     Ruta: img/hero/ 
+     Archivos: hero-1.jpg, hero-2.jpg, hero-3.jpg, etc.
+  ------------------------------------------ */
+  const photoBandTrack = document.getElementById('photoBandTrack');
+  
+  function loadHeroGallery() {
+    // Array de nombres de archivos (ajusta según tus imágenes)
+    const heroImages = [
+      'hero-1.jpg',
+      'hero-2.jpg',
+      'hero-3.jpg',
+      'hero-4.jpg',
+      'hero-5.jpg'
+    ];
+
+    photoBandTrack.innerHTML = '';
+    
+    // Cargamos las imágenes dos veces para el scroll infinito
+    heroImages.forEach(img => {
+      const item = document.createElement('img');
+      item.src = `img/hero/${img}`;
+      item.alt = 'Galería de evidencias';
+      item.className = 'band-item';
+      photoBandTrack.appendChild(item);
+    });
+
+    // Segunda vuelta para scroll infinito
+    heroImages.forEach(img => {
+      const item = document.createElement('img');
+      item.src = `img/hero/${img}`;
+      item.alt = 'Galería de evidencias';
+      item.className = 'band-item';
+      photoBandTrack.appendChild(item);
+    });
+  }
+
+  loadHeroGallery();
+
+
+  /* ------------------------------------------
+     2. FUNCIONALIDAD DE CARRUSELES
+  ------------------------------------------ */
+  const carousels = [
+    'carousel-utma',
+    'carousel-pedagogia',
+    'carousel-ford',
+    'carousel-utna',
+    'carousel-imaac',
+    'carousel-televisa'
+  ];
+
+  carousels.forEach(carouselId => {
+    initCarousel(carouselId);
+  });
+
+  function initCarousel(carouselId) {
+    const track = document.getElementById(carouselId);
+    if (!track) return;
+
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById(`${carouselId}-dots`);
+    
+    if (!slides.length || !dotsContainer) return;
+
+    let currentIndex = 0;
+
+    // Crear dots
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    });
+
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      track.style.transform = `translateX(${offset}%)`;
+
+      // Actualizar dots
+      document.querySelectorAll(`#${carouselId}-dots .carousel-dot`).forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    // Asignar funciones globales para los botones
+    window.moveCarousel = function(button, direction) {
+      const isNext = button.classList.contains('next');
+      goToSlide(currentIndex + direction);
+    };
+
+    updateCarousel();
+  }
+
+
+  /* ------------------------------------------
+     3. REVEAL ON SCROLL
   ------------------------------------------ */
   const revealEls = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        // Escalonar los hijos de la misma sección
         setTimeout(() => {
           entry.target.classList.add('visible');
         }, i * 80);
@@ -25,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     2. TIMELINE NAV: resaltar sección activa
+     4. TIMELINE NAV: resaltar sección activa
   ------------------------------------------ */
   const sections   = document.querySelectorAll('.exp-section');
   const tnItems    = document.querySelectorAll('.tn-item');
@@ -54,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     3. HERO DOTS: click → scroll suave
+     5. HERO DOTS: click → scroll suave
   ------------------------------------------ */
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
@@ -67,8 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     4. TOPBAR: scroll effect (reutiliza logic de main.js
-        pero aseguramos que esté aquí también)
+     6. TOPBAR: scroll effect
   ------------------------------------------ */
   const topbar = document.getElementById('topbar');
   if (topbar) {
@@ -87,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     5. MENÚ MÓVIL
+     7. MENÚ MÓVIL
   ------------------------------------------ */
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -97,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.classList.toggle('open');
     });
 
-    // Cerrar al hacer clic en un enlace
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
@@ -107,25 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     6. ANIMACIÓN DE LA BARRA KPI al entrar en viewport
-  ------------------------------------------ */
-  const kpiFill = document.querySelector('.kpi-fill');
-  if (kpiFill) {
-    const kpiObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // re-trigger animation
-          entry.target.style.animationPlayState = 'running';
-          kpiObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    kpiObserver.observe(kpiFill);
-  }
-
-
-  /* ------------------------------------------
-     7. CONTADOR ANIMADO del stat de inscritos
+     8. CONTADOR ANIMADO de inscritos
   ------------------------------------------ */
   const statNum = document.querySelector('.stat-num');
   if (statNum) {
@@ -150,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.8 });
 
     counterObserver.observe(statNum);
-    statNum.textContent = '0'; // empieza en 0
+    statNum.textContent = '0';
   }
 
 });
