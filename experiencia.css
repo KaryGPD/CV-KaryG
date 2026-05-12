@@ -224,7 +224,9 @@
    TIMELINE NAV — COLAPSABLE
    ========================================= */
 .timeline-toggle {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   right: 0;
   top: 50%;
@@ -244,8 +246,6 @@
   transition: all 0.3s ease;
   box-shadow: -2px 4px 12px rgba(0,0,0,0.08);
   padding: 0;
-  align-items: center;
-  justify-content: center;
 }
 
 .timeline-toggle:hover {
@@ -378,6 +378,8 @@
   grid-template-columns: 1fr 400px;
   gap: 32px;
   align-items: start;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
 }
 
 @media (max-width: 1250px) {
@@ -387,24 +389,28 @@
   }
 }
 
-.exp-section::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 56px; bottom: 0;
-  width: 4px;
-  border-radius: 4px;
-  grid-column: 1 / -1;
+.exp-section[data-theme="university"] {
+  border-top-color: var(--univ-accent);
+  border-bottom-color: var(--univ-accent);
 }
-
-.exp-section[data-theme="university"]::before { background: var(--univ-accent); }
-.exp-section[data-theme="pedagogy"]::before   { background: var(--ped-accent); }
-.exp-section[data-theme="auto"]::before       { background: var(--auto-accent); }
-.exp-section[data-theme="media"]::before      { background: var(--media-accent); }
+.exp-section[data-theme="pedagogy"] {
+  border-top-color: var(--ped-accent);
+  border-bottom-color: var(--ped-accent);
+}
+.exp-section[data-theme="auto"] {
+  border-top-color: var(--auto-accent);
+  border-bottom-color: var(--auto-accent);
+}
+.exp-section[data-theme="media"] {
+  border-top-color: var(--media-accent);
+  border-bottom-color: var(--media-accent);
+}
 
 .exp-section-content {
   display: flex;
   flex-direction: column;
   gap: 3px;
+}
 }
 
 /* =========================================
