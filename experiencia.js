@@ -1,6 +1,6 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js v2
-   Con funcionalidad de carruseles y galerías
+   EXPERIENCIA LABORAL — experiencia.js v3
+   Con funcionalidad de carruseles, galerías y toggle
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const photoBandTrack = document.getElementById('photoBandTrack');
   
   function loadHeroGallery() {
-    // Array de nombres de archivos (ajusta según tus imágenes)
     const heroImages = [
       'hero-1.jpg',
       'hero-2.jpg',
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     photoBandTrack.innerHTML = '';
     
-    // Cargamos las imágenes dos veces para el scroll infinito
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -33,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       photoBandTrack.appendChild(item);
     });
 
-    // Segunda vuelta para scroll infinito
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -73,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
 
-    // Crear dots
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
@@ -85,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const offset = -currentIndex * 100;
       track.style.transform = `translateX(${offset}%)`;
 
-      // Actualizar dots
       document.querySelectorAll(`#${carouselId}-dots .carousel-dot`).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
       });
@@ -96,9 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
-    // Asignar funciones globales para los botones
     window.moveCarousel = function(button, direction) {
-      const isNext = button.classList.contains('next');
       goToSlide(currentIndex + direction);
     };
 
@@ -126,7 +119,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     4. TIMELINE NAV: resaltar sección activa
+     4. TIMELINE NAV TOGGLE: abrir/cerrar
+  ------------------------------------------ */
+  const timelineToggle = document.getElementById('timelineToggle');
+  const timelineNav = document.getElementById('timelineNav');
+
+  if (timelineToggle && timelineNav) {
+    // El nav comienza colapsado
+    timelineNav.classList.add('collapsed');
+    
+    timelineToggle.addEventListener('click', () => {
+      timelineNav.classList.toggle('collapsed');
+      timelineToggle.classList.toggle('open');
+    });
+
+    // Cerrar al hacer clic en un item
+    document.querySelectorAll('.tn-item').forEach(item => {
+      item.addEventListener('click', () => {
+        timelineNav.classList.add('collapsed');
+        timelineToggle.classList.remove('open');
+      });
+    });
+  }
+
+
+  /* ------------------------------------------
+     5. TIMELINE NAV: resaltar sección activa
   ------------------------------------------ */
   const sections   = document.querySelectorAll('.exp-section');
   const tnItems    = document.querySelectorAll('.tn-item');
@@ -139,12 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = entry.target.id;
         const idx = sectionIds.indexOf(id);
 
-        // Timeline nav
         tnItems.forEach(item => item.classList.remove('active'));
         const activeItem = document.querySelector(`.tn-item[href="#${id}"]`);
         if (activeItem) activeItem.classList.add('active');
 
-        // Hero dots
         dots.forEach(d => d.classList.remove('active'));
         if (dots[idx]) dots[idx].classList.add('active');
       }
@@ -155,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     5. HERO DOTS: click → scroll suave
+     6. HERO DOTS: click → scroll suave
   ------------------------------------------ */
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
@@ -168,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     6. TOPBAR: scroll effect
+     7. TOPBAR: scroll effect
   ------------------------------------------ */
   const topbar = document.getElementById('topbar');
   if (topbar) {
@@ -187,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     7. MENÚ MÓVIL
+     8. MENÚ MÓVIL
   ------------------------------------------ */
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -206,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ------------------------------------------
-     8. CONTADOR ANIMADO de inscritos
+     9. CONTADOR ANIMADO de inscritos
   ------------------------------------------ */
   const statNum = document.querySelector('.stat-num');
   if (statNum) {
