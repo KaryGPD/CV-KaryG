@@ -1,26 +1,15 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js v3
-   Con funcionalidad de carruseles, galerías y toggle
+   EXPERIENCIA LABORAL — experiencia.js v4
+   Con carruseles de información y fotos
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ------------------------------------------
-     1. CARGAR IMÁGENES EN LA GALERÍA DEL HERO
-     Ruta: img/hero/ 
-     Archivos: hero-1.jpg, hero-2.jpg, hero-3.jpg, etc.
-  ------------------------------------------ */
+  /* 1. GALERÍA DEL HERO */
   const photoBandTrack = document.getElementById('photoBandTrack');
   
   function loadHeroGallery() {
-    const heroImages = [
-      'hero-1.jpg',
-      'hero-2.jpg',
-      'hero-3.jpg',
-      'hero-4.jpg',
-      'hero-5.jpg'
-    ];
-
+    const heroImages = ['hero-1.jpg', 'hero-2.jpg', 'hero-3.jpg', 'hero-4.jpg', 'hero-5.jpg'];
     photoBandTrack.innerHTML = '';
     
     heroImages.forEach(img => {
@@ -43,23 +32,27 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHeroGallery();
 
 
-  /* ------------------------------------------
-     2. FUNCIONALIDAD DE CARRUSELES
-  ------------------------------------------ */
+  /* 2. INICIALIZAR CARRUSELES */
   const carousels = [
-    'carousel-utma',
-    'carousel-pedagogia',
-    'carousel-ford',
-    'carousel-utna',
-    'carousel-imaac',
-    'carousel-televisa'
+    { id: 'carousel-info-utma', isInfo: true },
+    { id: 'carousel-utma', isInfo: false },
+    { id: 'carousel-info-pedagogia', isInfo: true },
+    { id: 'carousel-pedagogia', isInfo: false },
+    { id: 'carousel-info-ford', isInfo: true },
+    { id: 'carousel-ford', isInfo: false },
+    { id: 'carousel-info-utna', isInfo: true },
+    { id: 'carousel-utna', isInfo: false },
+    { id: 'carousel-info-imaac', isInfo: true },
+    { id: 'carousel-imaac', isInfo: false },
+    { id: 'carousel-info-televisa', isInfo: true },
+    { id: 'carousel-televisa', isInfo: false }
   ];
 
-  carousels.forEach(carouselId => {
-    initCarousel(carouselId);
+  carousels.forEach(carousel => {
+    initCarousel(carousel.id, carousel.isInfo);
   });
 
-  function initCarousel(carouselId) {
+  function initCarousel(carouselId, isInfo = false) {
     const track = document.getElementById(carouselId);
     if (!track) return;
 
@@ -91,17 +84,21 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
-    window.moveCarousel = function(button, direction) {
-      goToSlide(currentIndex + direction);
-    };
+    if (isInfo) {
+      window.moveCarouselInfo = function(button, direction) {
+        goToSlide(currentIndex + direction);
+      };
+    } else {
+      window.moveCarousel = function(button, direction) {
+        goToSlide(currentIndex + direction);
+      };
+    }
 
     updateCarousel();
   }
 
 
-  /* ------------------------------------------
-     3. REVEAL ON SCROLL
-  ------------------------------------------ */
+  /* 3. REVEAL ON SCROLL */
   const revealEls = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -118,14 +115,11 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => revealObserver.observe(el));
 
 
-  /* ------------------------------------------
-     4. TIMELINE NAV TOGGLE: abrir/cerrar
-  ------------------------------------------ */
+  /* 4. TIMELINE NAV TOGGLE */
   const timelineToggle = document.getElementById('timelineToggle');
   const timelineNav = document.getElementById('timelineNav');
 
   if (timelineToggle && timelineNav) {
-    // El nav comienza colapsado
     timelineNav.classList.add('collapsed');
     
     timelineToggle.addEventListener('click', () => {
@@ -133,7 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
       timelineToggle.classList.toggle('open');
     });
 
-    // Cerrar al hacer clic en un item
     document.querySelectorAll('.tn-item').forEach(item => {
       item.addEventListener('click', () => {
         timelineNav.classList.add('collapsed');
@@ -143,9 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ------------------------------------------
-     5. TIMELINE NAV: resaltar sección activa
-  ------------------------------------------ */
+  /* 5. TIMELINE NAV: resaltar sección activa */
   const sections   = document.querySelectorAll('.exp-section');
   const tnItems    = document.querySelectorAll('.tn-item');
   const dots       = document.querySelectorAll('.section-dots .dot');
@@ -170,9 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(sec => sectionObserver.observe(sec));
 
 
-  /* ------------------------------------------
-     6. HERO DOTS: click → scroll suave
-  ------------------------------------------ */
+  /* 6. HERO DOTS: click → scroll */
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       const target = document.getElementById(sectionIds[i]);
@@ -183,9 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ------------------------------------------
-     7. TOPBAR: scroll effect
-  ------------------------------------------ */
+  /* 7. TOPBAR SCROLL EFFECT */
   const topbar = document.getElementById('topbar');
   if (topbar) {
     window.addEventListener('scroll', () => {
@@ -202,9 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ------------------------------------------
-     8. MENÚ MÓVIL
-  ------------------------------------------ */
+  /* 8. MENÚ MÓVIL */
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -221,9 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* ------------------------------------------
-     9. CONTADOR ANIMADO de inscritos
-  ------------------------------------------ */
+  /* 9. CONTADOR ANIMADO */
   const statNum = document.querySelector('.stat-num');
   if (statNum) {
     const target = 800;
