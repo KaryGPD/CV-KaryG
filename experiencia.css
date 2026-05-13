@@ -1,9 +1,8 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.css v4
-   Con toggle colapsable para el navegador lateral
+   EXPERIENCIA LABORAL — experiencia.css v5
+   Grid 50-50 para información y fotos
    ========================================= */
 
-/* --- TEMAS DE COLOR POR ÁREA --- */
 :root {
   --univ-primary:  #1A3A6C;
   --univ-accent:   #4A90D9;
@@ -84,7 +83,7 @@
 }
 
 /* =========================================
-   PAGE HERO CON GALERÍA DE FONDO
+   PAGE HERO
    ========================================= */
 .page-hero {
   position: relative;
@@ -298,9 +297,7 @@
 }
 
 @media (min-width: 1100px) {
-  .timeline-nav {
-    display: block !important;
-  }
+  .timeline-nav { display: block !important; }
 }
 
 .tn-label {
@@ -368,14 +365,14 @@
 }
 
 /* =========================================
-   SECCIONES CON CARRUSEL
+   SECCIONES — GRID 50/50
    ========================================= */
 .exp-section {
   position: relative;
-  padding: 56px 0 0;
+  padding: 48px 0;
   margin-bottom: 16px;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: start;
   border-top: 3px solid transparent;
@@ -406,23 +403,14 @@
   border-bottom-color: var(--media-accent);
 }
 
-.exp-section-content {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-}
-
 /* =========================================
-   CARRUSEL DERECHO
+   CARRUSELES
    ========================================= */
+.section-carousel-info,
 .section-carousel {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: fit-content;
-  position: sticky;
-  top: 100px;
 }
 
 .carousel-label {
@@ -446,7 +434,7 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  height: 320px;
+  height: 500px;
   background: #f0f2f5;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
@@ -474,11 +462,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.carousel-slide:not(:has(img[src])) {
-  font-size: 3rem;
-  color: #ddd;
 }
 
 .slide-caption {
@@ -544,6 +527,42 @@
 
 .carousel-arrow.prev { left: 8px; }
 .carousel-arrow.next { right: 8px; }
+
+/* =========================================
+   INFO SLIDE
+   ========================================= */
+.info-slide {
+  padding: 20px;
+  overflow-y: auto;
+  background: white;
+}
+
+.info-slide .company-header {
+  padding: 0;
+  border-radius: 0;
+  margin-bottom: 12px;
+}
+
+.info-slide .role-block {
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: white;
+  margin-bottom: 12px;
+}
+
+.info-slide .role-block:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.info-slide .role-header {
+  margin-bottom: 10px;
+}
+
+.info-slide .role-list li {
+  font-size: 0.82rem;
+}
 
 /* =========================================
    COMPANY HEADER
@@ -633,31 +652,26 @@
 .role-block {
   background: white;
   border-radius: 0;
-  padding: 28px 32px;
-  border-top: 1px solid #f0f2f5;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px 0;
+  border-top: none;
+  transition: transform 0.3s ease;
 }
 .role-block:last-child {
-  border-radius: 0 0 16px 16px;
-  margin-bottom: 48px;
-  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  margin-bottom: 0;
+  border-bottom: none;
 }
 
-[data-theme="university"] .role-block:last-child { border-bottom-color: var(--univ-accent); }
-[data-theme="pedagogy"]   .role-block:last-child { border-bottom-color: var(--ped-accent); }
-[data-theme="auto"]       .role-block:last-child { border-bottom-color: var(--auto-accent); }
-[data-theme="media"]      .role-block:last-child { border-bottom-color: var(--media-accent); }
-
 .role-block:hover {
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 var(--gold), 4px 8px 24px rgba(0,0,0,0.06);
+  transform: none;
+  box-shadow: none;
 }
 
 .role-header {
   display: flex;
   align-items: flex-start;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .role-icon {
@@ -695,99 +709,92 @@
 
 .role-title {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--text);
   line-height: 1.2;
   letter-spacing: 0.01em;
 }
 
-.role-intro {
-  font-size: 0.95rem;
-  color: #556;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-style: italic;
-}
-
 .role-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 .role-list li {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   color: #445;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 .role-list li::before {
   content: '';
-  width: 6px; height: 6px;
+  width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--gold);
   flex-shrink: 0;
-  margin-top: 7px;
+  margin-top: 5px;
 }
 
 .role-body {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .role-stat-row {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
   background: var(--univ-light);
   border: 1px solid var(--univ-border);
-  border-radius: 12px;
-  padding: 16px 20px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 10px;
 }
 .role-stat { text-align: center; flex-shrink: 0; }
 .stat-num {
   display: block;
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   font-weight: 900;
   color: var(--univ-primary);
   line-height: 1;
 }
 .stat-label {
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   color: var(--univ-primary);
   opacity: 0.7;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 .role-stat-desc {
-  font-size: 0.88rem;
+  font-size: 0.75rem;
   color: #445;
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
-.role-sport { border-left: 4px solid var(--sport-accent); }
+.role-sport { border-left: none; }
 
 .sports-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
   margin-top: 8px;
 }
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 4px 10px;
   border-radius: 100px;
   background: var(--sport-light);
   border: 1.5px solid var(--sport-border);
@@ -798,63 +805,63 @@
 
 .ped-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
   margin-top: 8px;
 }
 .ped-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding: 16px;
+  gap: 6px;
+  padding: 10px;
   background: var(--ped-light);
   border: 1.5px solid var(--ped-border);
-  border-radius: 12px;
-  font-size: 0.83rem;
+  border-radius: 8px;
+  font-size: 0.72rem;
   color: var(--ped-primary);
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.3;
   transition: transform 0.2s;
 }
-.ped-card:hover { transform: translateY(-3px); }
-.ped-icon { font-size: 1.4rem; }
+.ped-card:hover { transform: translateY(-2px); }
+.ped-icon { font-size: 1.2rem; }
 
 .auto-stat-row {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 10px;
   background: var(--auto-light);
   border: 1px solid var(--auto-border);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-top: 16px;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 10px;
 }
 .auto-kpi { flex-shrink: 0; text-align: center; }
 .kpi-num {
   display: block;
   font-family: var(--font-display);
-  font-size: 3.2rem;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--auto-primary);
   line-height: 1;
 }
 .kpi-label {
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   color: var(--auto-primary);
   opacity: 0.7;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  line-height: 1.4;
+  line-height: 1.2;
 }
 .kpi-bar-wrap { flex: 1; }
 .kpi-bar {
-  height: 10px;
+  height: 6px;
   background: rgba(224,123,57,0.2);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .kpi-fill {
   height: 100%;
@@ -867,7 +874,7 @@
   from { width: 0; }
   to   { width: var(--fill, 0%); }
 }
-.kpi-bar-wrap small { font-size: 0.78rem; color: #667; }
+.kpi-bar-wrap small { font-size: 0.68rem; color: #667; }
 
 .reveal {
   opacity: 0;
@@ -936,87 +943,18 @@
 @media (max-width: 1250px) {
   .page-hero { padding: 90px 24px 56px; }
   .exp-section { grid-template-columns: 1fr; }
-  .section-carousel { position: static; }
 }
 
 @media (max-width: 860px) {
   .company-header { flex-wrap: wrap; gap: 14px; padding: 20px; }
   .company-badge { order: 3; }
-  .role-block { padding: 20px; }
-  .role-stat-row, .auto-stat-row { flex-direction: column; align-items: flex-start; }
   .menu-toggle { display: flex; }
   .topbar-links { display: none; }
-  .carousel-track-wrap { height: 280px; }
+  .carousel-track-wrap { height: 400px; }
+  .role-title { font-size: 1rem; }
 }
 
 @media (max-width: 520px) {
-  .ped-grid { grid-template-columns: 1fr 1fr; }
-  .carousel-track-wrap { height: 220px; }
-}
-
-/* =========================================
-   CARRUSEL DE INFORMACIÓN (Izquierdo)
-   ========================================= */
-.section-carousel-info {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  height: fit-content;
-  position: sticky;
-  top: 100px;
-}
-
-.carousel-track-wrap.info-wrap {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  height: 320px;
-  background: #f0f2f5;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-}
-
-.info-slide {
-  padding: 20px;
-  overflow-y: auto;
-  background: white;
-}
-
-.info-slide .company-header {
-  padding: 0;
-  border-radius: 0;
-  margin-bottom: 0;
-}
-
-.info-slide .role-block {
-  padding: 0;
-  border-radius: 0;
-  border: none;
-  background: white;
-  margin-bottom: 0;
-}
-
-.info-slide .role-block:last-child {
-  border-bottom: none;
-}
-
-.info-slide .role-block:hover {
-  box-shadow: none;
-  transform: none;
-}
-
-.info-slide .role-list {
-  margin-bottom: 12px;
-}
-
-.info-slide .role-list li {
-  font-size: 0.85rem;
-}
-
-.info-slide .sports-chips {
-  gap: 6px;
-}
-
-.info-slide .chip {
-  font-size: 0.75rem;
-  padding: 4px 10px;
+  .ped-grid { grid-template-columns: 1fr; }
+  .carousel-track-wrap { height: 300px; }
 }
