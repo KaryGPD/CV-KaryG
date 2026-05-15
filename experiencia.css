@@ -1133,3 +1133,190 @@
   .ped-grid { grid-template-columns: 1fr 1fr; }
   .carousel-track-wrap { height: 300px; }
 }
+
+/* =========================================
+   AJUSTES FINALES PARA LLENAR ESPACIO
+   ========================================= */
+
+.info-slide {
+  padding: 20px;
+  overflow-y: auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.info-slide .company-header {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.info-slide .company-header::after {
+  display: none !important;
+}
+
+.info-slide .company-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.info-slide .company-name {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.info-slide .company-period {
+  font-size: 0.68rem;
+}
+
+.info-slide .company-full {
+  font-size: 0.75rem;
+}
+
+.info-slide .company-badge {
+  font-size: 0.63rem;
+  padding: 4px 10px;
+}
+
+.info-slide .role-block {
+  padding: 12px 0;
+  border: none !important;
+  background: white !important;
+  margin-bottom: 8px;
+  border-top: 1px solid #f0f2f5;
+}
+
+.info-slide .role-block:last-child {
+  border-bottom: none !important;
+  margin-bottom: 0;
+}
+
+.info-slide .role-block:hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.info-slide .role-header {
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.info-slide .role-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.info-slide .role-icon svg {
+  width: 16px;
+}
+
+.info-slide .role-tag {
+  font-size: 0.58rem;
+  padding: 2px 6px;
+  margin-bottom: 2px;
+}
+
+.info-slide .role-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.info-slide .role-list {
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.info-slide .role-list li {
+  font-size: 0.75rem;
+  line-height: 1.3;
+  gap: 6px;
+}
+
+.info-slide .role-list li::before {
+  width: 4px;
+  height: 4px;
+  margin-top: 4px;
+}
+
+.info-slide .role-intro {
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.info-slide .role-stat-row {
+  gap: 12px;
+  padding: 10px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.info-slide .stat-num {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.info-slide .stat-label {
+  font-size: 0.6rem;
+  line-height: 1.2;
+}
+
+.info-slide .role-stat-desc {
+  font-size: 0.72rem;
+  line-height: 1.3;
+}
+
+.info-slide .sports-chips {
+  gap: 4px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.info-slide .chip {
+  font-size: 0.68rem;
+  padding: 3px 8px;
+}
+
+.info-slide .ped-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.info-slide .ped-card {
+  padding: 8px;
+  font-size: 0.68rem;
+  gap: 3px;
+}
+
+.info-slide .ped-icon {
+  font-size: 0.9rem;
+}
+
+.info-slide .auto-stat-row {
+  gap: 10px;
+  padding: 10px;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.info-slide .kpi-num {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.info-slide .kpi-label {
+  font-size: 0.6rem;
+  line-height: 1.2;
+}
+
+.info-slide .kpi-bar-wrap small {
+  font-size: 0.68rem;
+}
