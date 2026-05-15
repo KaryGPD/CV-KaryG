@@ -1,6 +1,6 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.css v4
-   Con toggle colapsable para el navegador lateral
+   EXPERIENCIA LABORAL — experiencia.css v5
+   Grid 50/50 + Carruseles de información
    ========================================= */
 
 /* --- TEMAS DE COLOR POR ÁREA --- */
@@ -298,9 +298,7 @@
 }
 
 @media (min-width: 1100px) {
-  .timeline-nav {
-    display: block !important;
-  }
+  .timeline-nav { display: block !important; }
 }
 
 .tn-label {
@@ -337,9 +335,9 @@
 }
 .tn-item.active .tn-dot { background: var(--gold); }
 .tn-item[data-theme="university"] .tn-dot { background: var(--univ-accent); }
-.tn-item[data-theme="pedagogy"]   .tn-dot { background: var(--ped-accent); }
-.tn-item[data-theme="auto"]       .tn-dot { background: var(--auto-accent); }
-.tn-item[data-theme="media"]      .tn-dot { background: var(--media-accent); }
+.tn-item[data-theme="pedagogy"] .tn-dot { background: var(--ped-accent); }
+.tn-item[data-theme="auto"] .tn-dot { background: var(--auto-accent); }
+.tn-item[data-theme="media"] .tn-dot { background: var(--media-accent); }
 
 .tn-text {
   display: flex;
@@ -368,14 +366,14 @@
 }
 
 /* =========================================
-   SECCIONES CON CARRUSEL
+   SECCIONES — GRID 50/50
    ========================================= */
 .exp-section {
   position: relative;
-  padding: 56px 0 0;
+  padding: 48px 0;
   margin-bottom: 16px;
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 1fr;
   gap: 32px;
   align-items: start;
   border-top: 3px solid transparent;
@@ -406,23 +404,14 @@
   border-bottom-color: var(--media-accent);
 }
 
-.exp-section-content {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-}
-
 /* =========================================
-   CARRUSEL DERECHO
+   CARRUSELES (Información + Fotos)
    ========================================= */
+.section-carousel-info,
 .section-carousel {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  height: fit-content;
-  position: sticky;
-  top: 100px;
 }
 
 .carousel-label {
@@ -446,7 +435,7 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  height: 320px;
+  height: 500px;
   background: #f0f2f5;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
@@ -474,11 +463,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.carousel-slide:not(:has(img[src])) {
-  font-size: 3rem;
-  color: #ddd;
 }
 
 .slide-caption {
@@ -546,6 +530,47 @@
 .carousel-arrow.next { right: 8px; }
 
 /* =========================================
+   INFO SLIDE
+   ========================================= */
+.info-slide {
+  padding: 20px;
+  overflow-y: auto;
+  background: white;
+}
+
+.info-slide .company-header {
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.info-slide .role-block {
+  padding: 12px 0;
+  border-radius: 0;
+  border: none;
+  background: white;
+  margin-bottom: 8px;
+}
+
+.info-slide .role-block:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.info-slide .role-title {
+  font-size: 1rem;
+}
+
+.info-slide .role-list {
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.info-slide .role-list li {
+  font-size: 0.8rem;
+}
+
+/* =========================================
    COMPANY HEADER
    ========================================= */
 .company-header {
@@ -560,9 +585,9 @@
 }
 
 [data-theme="university"] .company-header { background: var(--univ-primary); }
-[data-theme="pedagogy"]   .company-header { background: var(--ped-primary); }
-[data-theme="auto"]       .company-header { background: var(--auto-primary); }
-[data-theme="media"]      .company-header { background: var(--media-primary); }
+[data-theme="pedagogy"] .company-header { background: var(--ped-primary); }
+[data-theme="auto"] .company-header { background: var(--auto-primary); }
+[data-theme="media"] .company-header { background: var(--media-primary); }
 
 .company-header::after {
   content: '';
@@ -623,9 +648,9 @@
   align-self: flex-start;
 }
 .university-badge { background: rgba(74,144,217,0.25); color: #A8D4F5; border: 1px solid rgba(74,144,217,0.4); }
-.pedagogy-badge   { background: rgba(82,183,136,0.25); color: #A8DFBF; border: 1px solid rgba(82,183,136,0.4); }
-.auto-badge       { background: rgba(224,123,57,0.25);  color: #F0C4A4; border: 1px solid rgba(224,123,57,0.4); }
-.media-badge      { background: rgba(155,89,182,0.25);  color: #D7B8E8; border: 1px solid rgba(155,89,182,0.4); }
+.pedagogy-badge { background: rgba(82,183,136,0.25); color: #A8DFBF; border: 1px solid rgba(82,183,136,0.4); }
+.auto-badge { background: rgba(224,123,57,0.25); color: #F0C4A4; border: 1px solid rgba(224,123,57,0.4); }
+.media-badge { background: rgba(155,89,182,0.25); color: #D7B8E8; border: 1px solid rgba(155,89,182,0.4); }
 
 /* =========================================
    ROLE BLOCKS
@@ -644,9 +669,9 @@
 }
 
 [data-theme="university"] .role-block:last-child { border-bottom-color: var(--univ-accent); }
-[data-theme="pedagogy"]   .role-block:last-child { border-bottom-color: var(--ped-accent); }
-[data-theme="auto"]       .role-block:last-child { border-bottom-color: var(--auto-accent); }
-[data-theme="media"]      .role-block:last-child { border-bottom-color: var(--media-accent); }
+[data-theme="pedagogy"] .role-block:last-child { border-bottom-color: var(--ped-accent); }
+[data-theme="auto"] .role-block:last-child { border-bottom-color: var(--auto-accent); }
+[data-theme="media"] .role-block:last-child { border-bottom-color: var(--media-accent); }
 
 .role-block:hover {
   transform: translateX(4px);
@@ -687,11 +712,11 @@
   background: #f0f3f7;
   color: var(--gray);
 }
-.sport-tag  { background: var(--sport-light); color: var(--sport-primary); }
-.tut-tag    { background: #EFF6FF; color: #2563EB; }
+.sport-tag { background: var(--sport-light); color: var(--sport-primary); }
+.tut-tag { background: #EFF6FF; color: #2563EB; }
 .pedagogy-tag { background: var(--ped-light); color: var(--ped-primary); }
-.auto-tag   { background: var(--auto-light); color: var(--auto-primary); }
-.media-tag  { background: var(--media-light); color: var(--media-primary); }
+.auto-tag { background: var(--auto-light); color: var(--auto-primary); }
+.media-tag { background: var(--media-light); color: var(--media-primary); }
 
 .role-title {
   font-family: var(--font-display);
@@ -865,7 +890,7 @@
 }
 @keyframes fillBar {
   from { width: 0; }
-  to   { width: var(--fill, 0%); }
+  to { width: var(--fill, 0%); }
 }
 .kpi-bar-wrap small { font-size: 0.78rem; color: #667; }
 
@@ -936,7 +961,6 @@
 @media (max-width: 1250px) {
   .page-hero { padding: 90px 24px 56px; }
   .exp-section { grid-template-columns: 1fr; }
-  .section-carousel { position: static; }
 }
 
 @media (max-width: 860px) {
@@ -946,10 +970,11 @@
   .role-stat-row, .auto-stat-row { flex-direction: column; align-items: flex-start; }
   .menu-toggle { display: flex; }
   .topbar-links { display: none; }
-  .carousel-track-wrap { height: 280px; }
+  .carousel-track-wrap { height: 400px; }
+  .role-title { font-size: 1rem; }
 }
 
 @media (max-width: 520px) {
   .ped-grid { grid-template-columns: 1fr 1fr; }
-  .carousel-track-wrap { height: 220px; }
+  .carousel-track-wrap { height: 300px; }
 }
