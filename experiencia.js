@@ -1,17 +1,27 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js v4
+   EXPERIENCIA LABORAL — experiencia.js v5
    Con carruseles de información y fotos
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* 1. GALERÍA DEL HERO */
+  /* ========================================
+     1. CARGAR GALERÍA DEL HERO
+  ======================================== */
   const photoBandTrack = document.getElementById('photoBandTrack');
   
   function loadHeroGallery() {
-    const heroImages = ['hero-1.jpg', 'hero-2.jpg', 'hero-3.jpg', 'hero-4.jpg', 'hero-5.jpg'];
+    const heroImages = [
+      'hero-1.jpg',
+      'hero-2.jpg',
+      'hero-3.jpg',
+      'hero-4.jpg',
+      'hero-5.jpg'
+    ];
+
     photoBandTrack.innerHTML = '';
     
+    // Primera pasada de imágenes
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -20,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
       photoBandTrack.appendChild(item);
     });
 
+    // Segunda pasada para scroll infinito
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -32,7 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHeroGallery();
 
 
-  /* 2. INICIALIZAR CARRUSELES */
+  /* ========================================
+     2. INICIALIZAR CARRUSELES
+  ======================================== */
   const carousels = [
     { id: 'carousel-info-utma', isInfo: true },
     { id: 'carousel-utma', isInfo: false },
@@ -63,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
 
+    // Crear puntos indicadores
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
@@ -74,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const offset = -currentIndex * 100;
       track.style.transform = `translateX(${offset}%)`;
 
+      // Actualizar puntos
       document.querySelectorAll(`#${carouselId}-dots .carousel-dot`).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
       });
@@ -84,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
+    // Funciones globales para los botones onclick
     if (isInfo) {
       window.moveCarouselInfo = function(button, direction) {
         goToSlide(currentIndex + direction);
@@ -98,7 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 3. REVEAL ON SCROLL */
+  /* ========================================
+     3. REVEAL ON SCROLL
+  ======================================== */
   const revealEls = document.querySelectorAll('.reveal');
 
   const revealObserver = new IntersectionObserver((entries) => {
@@ -115,18 +133,23 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => revealObserver.observe(el));
 
 
-  /* 4. TIMELINE NAV TOGGLE */
+  /* ========================================
+     4. TIMELINE NAV TOGGLE
+  ======================================== */
   const timelineToggle = document.getElementById('timelineToggle');
   const timelineNav = document.getElementById('timelineNav');
 
   if (timelineToggle && timelineNav) {
+    // Comienza colapsado
     timelineNav.classList.add('collapsed');
     
+    // Click en el botón toggle
     timelineToggle.addEventListener('click', () => {
       timelineNav.classList.toggle('collapsed');
       timelineToggle.classList.toggle('open');
     });
 
+    // Cerrar al clickear un item
     document.querySelectorAll('.tn-item').forEach(item => {
       item.addEventListener('click', () => {
         timelineNav.classList.add('collapsed');
@@ -136,7 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 5. TIMELINE NAV: resaltar sección activa */
+  /* ========================================
+     5. TIMELINE NAV: RESALTAR SECCIÓN ACTIVA
+  ======================================== */
   const sections   = document.querySelectorAll('.exp-section');
   const tnItems    = document.querySelectorAll('.tn-item');
   const dots       = document.querySelectorAll('.section-dots .dot');
@@ -148,10 +173,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = entry.target.id;
         const idx = sectionIds.indexOf(id);
 
+        // Remover activos previos
         tnItems.forEach(item => item.classList.remove('active'));
+        
+        // Activar el nuevo
         const activeItem = document.querySelector(`.tn-item[href="#${id}"]`);
         if (activeItem) activeItem.classList.add('active');
 
+        // Actualizar dots del hero
         dots.forEach(d => d.classList.remove('active'));
         if (dots[idx]) dots[idx].classList.add('active');
       }
@@ -161,7 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(sec => sectionObserver.observe(sec));
 
 
-  /* 6. HERO DOTS: click → scroll */
+  /* ========================================
+     6. HERO DOTS: SCROLL SUAVE
+  ======================================== */
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
       const target = document.getElementById(sectionIds[i]);
@@ -172,7 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* 7. TOPBAR SCROLL EFFECT */
+  /* ========================================
+     7. TOPBAR SCROLL EFFECT
+  ======================================== */
   const topbar = document.getElementById('topbar');
   if (topbar) {
     window.addEventListener('scroll', () => {
@@ -189,7 +222,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 8. MENÚ MÓVIL */
+  /* ========================================
+     8. MENÚ MÓVIL
+  ======================================== */
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -206,7 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  /* 9. CONTADOR ANIMADO */
+  /* ========================================
+     9. CONTADOR ANIMADO (Inscritos)
+  ======================================== */
   const statNum = document.querySelector('.stat-num');
   if (statNum) {
     const target = 800;
