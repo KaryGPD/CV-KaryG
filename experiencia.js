@@ -1,6 +1,6 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js v5
-   Con carruseles de información y fotos
+   EXPERIENCIA LABORAL — experiencia.js v6
+   Carruseles independientes + Llena espacio
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,17 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const photoBandTrack = document.getElementById('photoBandTrack');
   
   function loadHeroGallery() {
-    const heroImages = [
-      'hero-1.jpg',
-      'hero-2.jpg',
-      'hero-3.jpg',
-      'hero-4.jpg',
-      'hero-5.jpg'
-    ];
-
+    const heroImages = ['hero-1.jpg', 'hero-2.jpg', 'hero-3.jpg', 'hero-4.jpg', 'hero-5.jpg'];
     photoBandTrack.innerHTML = '';
     
-    // Primera pasada de imágenes
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -30,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
       photoBandTrack.appendChild(item);
     });
 
-    // Segunda pasada para scroll infinito
     heroImages.forEach(img => {
       const item = document.createElement('img');
       item.src = `img/hero/${img}`;
@@ -44,36 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     2. INICIALIZAR CARRUSELES
+     2. OBJETO PARA CONTROLAR CARRUSELES
   ======================================== */
-  const carousels = [
-    { id: 'carousel-info-utma', isInfo: true },
-    { id: 'carousel-utma', isInfo: false },
-    { id: 'carousel-info-pedagogia', isInfo: true },
-    { id: 'carousel-pedagogia', isInfo: false },
-    { id: 'carousel-info-ford', isInfo: true },
-    { id: 'carousel-ford', isInfo: false },
-    { id: 'carousel-info-utna', isInfo: true },
-    { id: 'carousel-utna', isInfo: false },
-    { id: 'carousel-info-imaac', isInfo: true },
-    { id: 'carousel-imaac', isInfo: false },
-    { id: 'carousel-info-televisa', isInfo: true },
-    { id: 'carousel-televisa', isInfo: false }
-  ];
+  const carouselStates = {};
 
-  carousels.forEach(carousel => {
-    initCarousel(carousel.id, carousel.isInfo);
-  });
-
-  function initCarousel(carouselId, isInfo = false) {
+  function initCarousel(carouselId) {
     const track = document.getElementById(carouselId);
     if (!track) return;
 
     const slides = track.querySelectorAll('.carousel-slide');
     const dotsContainer = document.getElementById(`${carouselId}-dots`);
+    const arrowsContainer = track.parentElement;
     
     if (!slides.length || !dotsContainer) return;
 
+    // Estado del carrusel
     let currentIndex = 0;
 
     // Crear puntos indicadores
@@ -88,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const offset = -currentIndex * 100;
       track.style.transform = `translateX(${offset}%)`;
 
-      // Actualizar puntos
       document.querySelectorAll(`#${carouselId}-dots .carousel-dot`).forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
       });
@@ -99,19 +74,36 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
-    // Funciones globales para los botones onclick
-    if (isInfo) {
-      window.moveCarouselInfo = function(button, direction) {
-        goToSlide(currentIndex + direction);
-      };
-    } else {
-      window.moveCarousel = function(button, direction) {
-        goToSlide(currentIndex + direction);
-      };
-    }
+    // Guardar estado para acceso desde botones
+    carouselStates[carouselId] = { goToSlide, currentIndex: () => currentIndex };
+
+    // Botones de navegación
+    const prevBtn = arrowsContainer.querySelector('.carousel-arrow.prev');
+    const nextBtn = arrowsContainer.querySelector('.carousel-arrow.next');
+
+    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
 
     updateCarousel();
   }
+
+  // Inicializar TODOS los carruseles
+  const allCarousels = [
+    'carousel-info-utma',
+    'carousel-utma',
+    'carousel-info-pedagogia',
+    'carousel-pedagogia',
+    'carousel-info-ford',
+    'carousel-ford',
+    'carousel-info-utna',
+    'carousel-utna',
+    'carousel-info-imaac',
+    'carousel-imaac',
+    'carousel-info-televisa',
+    'carousel-televisa'
+  ];
+
+  allCarousels.forEach(id => initCarousel(id));
 
 
   /* ========================================
@@ -140,16 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const timelineNav = document.getElementById('timelineNav');
 
   if (timelineToggle && timelineNav) {
-    // Comienza colapsado
     timelineNav.classList.add('collapsed');
     
-    // Click en el botón toggle
     timelineToggle.addEventListener('click', () => {
       timelineNav.classList.toggle('collapsed');
       timelineToggle.classList.toggle('open');
     });
 
-    // Cerrar al clickear un item
     document.querySelectorAll('.tn-item').forEach(item => {
       item.addEventListener('click', () => {
         timelineNav.classList.add('collapsed');
@@ -173,14 +162,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const id = entry.target.id;
         const idx = sectionIds.indexOf(id);
 
-        // Remover activos previos
         tnItems.forEach(item => item.classList.remove('active'));
-        
-        // Activar el nuevo
         const activeItem = document.querySelector(`.tn-item[href="#${id}"]`);
         if (activeItem) activeItem.classList.add('active');
 
-        // Actualizar dots del hero
         dots.forEach(d => d.classList.remove('active'));
         if (dots[idx]) dots[idx].classList.add('active');
       }
