@@ -136,7 +136,7 @@
 .hero-glow {
   position: absolute;
   top: -100px; right: -100px;
-  width: 500px; height: 500px;
+  width: 500px; height: 550px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(242,167,27,0.12) 0%, transparent 70%);
 }
@@ -435,7 +435,7 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  height: 500px;
+  height: 550px;
   background: #f0f2f5;
   box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
@@ -928,6 +928,161 @@
 .cta-btns {
   display: flex;
   gap: 16px;
+/* Aumentar altura del carrusel */
+.carousel-track-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 550px;
+  background: #f0f2f5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+/* Info slide mejorado */
+.info-slide {
+  padding: 24px;
+  overflow-y: auto;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-slide .company-header {
+  padding: 18px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+
+.info-slide .company-header::after {
+  display: none;
+}
+
+.info-slide .company-name {
+  font-size: 1.6rem;
+}
+
+.info-slide .company-full {
+  font-size: 0.75rem;
+}
+
+.info-slide .role-block {
+  padding: 12px 0;
+  border-radius: 0;
+  border: none;
+  background: white;
+  margin-bottom: 0;
+}
+
+.info-slide .role-block:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.info-slide .role-header {
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.info-slide .role-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.info-slide .role-icon svg {
+  width: 18px;
+}
+
+.info-slide .role-title {
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.info-slide .role-tag {
+  font-size: 0.6rem;
+  padding: 2px 8px;
+  margin-bottom: 3px;
+}
+
+.info-slide .role-list {
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+.info-slide .role-list li {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  gap: 6px;
+}
+
+.info-slide .role-list li::before {
+  width: 4px;
+  height: 4px;
+  margin-top: 5px;
+}
+
+.info-slide .role-stat-row {
+  gap: 12px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+
+.info-slide .stat-num {
+  font-size: 2rem;
+}
+
+.info-slide .stat-label {
+  font-size: 0.62rem;
+}
+
+.info-slide .role-stat-desc {
+  font-size: 0.75rem;
+}
+
+.info-slide .sports-chips {
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.info-slide .chip {
+  font-size: 0.7rem;
+  padding: 4px 10px;
+}
+
+.info-slide .ped-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.info-slide .ped-card {
+  padding: 10px;
+  font-size: 0.7rem;
+  gap: 4px;
+}
+
+.info-slide .ped-icon {
+  font-size: 1rem;
+}
+
+.info-slide .role-intro {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.info-slide .auto-stat-row {
+  gap: 12px;
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+
+.info-slide .kpi-num {
+  font-size: 2.2rem;
+}
+
+.info-slide .kpi-label {
+  font-size: 0.62rem;
+}
   flex-wrap: wrap;
   justify-content: center;
 }
