@@ -1,6 +1,6 @@
 /* =========================================
-   EXPERIENCIA LABORAL — experiencia.js v6
-   Carruseles independientes + Llena espacio
+   EXPERIENCIA LABORAL — experiencia.js v7
+   Con modal de galería en pantalla completa
    ========================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       item.src = `img/hero/${img}`;
       item.alt = 'Galería de evidencias';
       item.className = 'band-item';
+      item.onerror = function() { this.style.display = 'none'; };
       photoBandTrack.appendChild(item);
     });
 
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       item.src = `img/hero/${img}`;
       item.alt = 'Galería de evidencias';
       item.className = 'band-item';
+      item.onerror = function() { this.style.display = 'none'; };
       photoBandTrack.appendChild(item);
     });
   }
@@ -35,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     2. OBJETO PARA CONTROLAR CARRUSELES
+     2. INICIALIZAR CARRUSELES DE INFO
   ======================================== */
   const carouselStates = {};
 
@@ -49,10 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (!slides.length || !dotsContainer) return;
 
-    // Estado del carrusel
     let currentIndex = 0;
 
-    // Crear puntos indicadores
     slides.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
@@ -74,10 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
       updateCarousel();
     }
 
-    // Guardar estado para acceso desde botones
     carouselStates[carouselId] = { goToSlide, currentIndex: () => currentIndex };
 
-    // Botones de navegación
     const prevBtn = arrowsContainer.querySelector('.carousel-arrow.prev');
     const nextBtn = arrowsContainer.querySelector('.carousel-arrow.next');
 
@@ -87,27 +85,125 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
   }
 
-  // Inicializar TODOS los carruseles
   const allCarousels = [
     'carousel-info-utma',
-    'carousel-utma',
     'carousel-info-pedagogia',
-    'carousel-pedagogia',
     'carousel-info-ford',
-    'carousel-ford',
     'carousel-info-utna',
-    'carousel-utna',
     'carousel-info-imaac',
-    'carousel-imaac',
-    'carousel-info-televisa',
-    'carousel-televisa'
+    'carousel-info-televisa'
   ];
 
   allCarousels.forEach(id => initCarousel(id));
 
 
   /* ========================================
-     3. REVEAL ON SCROLL
+     3. FUNCIONES DEL MODAL DE GALERÍA
+  ======================================== */
+  const galleryData = {
+    utma: { name: 'UTMA', count: 5 },
+    pedagogia: { name: 'Pedagogía', count: 4 },
+    ford: { name: 'Ford CONAUTO', count: 4 },
+    utna: { name: 'UTNA', count: 3 },
+    imaac: { name: 'IMAAC', count: 3 },
+    televisa: { name: 'Televisa', count: 3 }
+  };
+
+  let currentGallery = null;
+  let currentPhotoIndex = 0;
+
+  window.openGallery = function(section, name) {
+    const modal = document.getElementById('galleryModal');
+    const track = document.getElementById('galleryTrack');
+    const title = document.querySelector('.gallery-title');
+    
+    currentGallery = section;
+    currentPhotoIndex = 0;
+
+    title.textContent = `Galería de fotos ${name}`;
+    track.innerHTML = '';
+
+    const count = galleryData[section].count;
+    
+    for (let i = 1; i <= count; i++) {
+      const photoDiv = document.createElement('div');
+      photoDiv.className = `gallery-photo ${i === 1 ? 'active' : ''}`;
+      
+      const img = document.createElement('img');
+      img.src = `img/${section}/foto-${i}.jpg`;
+      img.alt = `${name} - Foto ${i}`;
+      img.onerror = function() {
+        photoDiv.innerHTML = `
+          <div class="gallery-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <p>Imagen no disponible</p>
+          </div>
+        `;
+      };
+      photoDiv.appendChild(img);
+      track.appendChild(photoDiv);
+    }
+
+    document.getElementById('photoTotal').textContent = count;
+    document.getElementById('photoCounter').textContent = '1';
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeGallery = function() {
+    const modal = document.getElementById('galleryModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    currentGallery = null;
+  };
+
+  window.nextGalleryPhoto = function() {
+    if (!currentGallery) return;
+    const count = galleryData[currentGallery].count;
+    currentPhotoIndex = (currentPhotoIndex + 1) % count;
+    updateGalleryPhoto();
+  };
+
+  window.prevGalleryPhoto = function() {
+    if (!currentGallery) return;
+    const count = galleryData[currentGallery].count;
+    currentPhotoIndex = (currentPhotoIndex - 1 + count) % count;
+    updateGalleryPhoto();
+  };
+
+  function updateGalleryPhoto() {
+    const photos = document.querySelectorAll('.gallery-photo');
+    photos.forEach((photo, i) => {
+      photo.classList.toggle('active', i === currentPhotoIndex);
+    });
+    document.getElementById('photoCounter').textContent = currentPhotoIndex + 1;
+  }
+
+  // Cerrar modal al clickear fuera
+  document.getElementById('galleryModal').addEventListener('click', (e) => {
+    if (e.target.id === 'galleryModal') {
+      closeGallery();
+    }
+  });
+
+  // Navegación con teclado
+  document.addEventListener('keydown', (e) => {
+    const modal = document.getElementById('galleryModal');
+    if (!modal.classList.contains('active')) return;
+
+    if (e.key === 'ArrowRight') nextGalleryPhoto();
+    if (e.key === 'ArrowLeft') prevGalleryPhoto();
+    if (e.key === 'Escape') closeGallery();
+  });
+
+
+  /* ========================================
+     4. REVEAL ON SCROLL
   ======================================== */
   const revealEls = document.querySelectorAll('.reveal');
 
@@ -126,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     4. TIMELINE NAV TOGGLE
+     5. TIMELINE NAV TOGGLE
   ======================================== */
   const timelineToggle = document.getElementById('timelineToggle');
   const timelineNav = document.getElementById('timelineNav');
@@ -149,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     5. TIMELINE NAV: RESALTAR SECCIÓN ACTIVA
+     6. TIMELINE NAV: RESALTAR SECCIÓN ACTIVA
   ======================================== */
   const sections   = document.querySelectorAll('.exp-section');
   const tnItems    = document.querySelectorAll('.tn-item');
@@ -176,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     6. HERO DOTS: SCROLL SUAVE
+     7. HERO DOTS: SCROLL SUAVE
   ======================================== */
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
@@ -189,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     7. TOPBAR SCROLL EFFECT
+     8. TOPBAR SCROLL EFFECT
   ======================================== */
   const topbar = document.getElementById('topbar');
   if (topbar) {
@@ -208,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     8. MENÚ MÓVIL
+     9. MENÚ MÓVIL
   ======================================== */
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -227,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================
-     9. CONTADOR ANIMADO (Inscritos)
+     10. CONTADOR ANIMADO (Inscritos)
   ======================================== */
   const statNum = document.querySelector('.stat-num');
   if (statNum) {
